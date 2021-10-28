@@ -1,6 +1,8 @@
 package infra
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func init() {
 	Register(&ConfStarter{})
