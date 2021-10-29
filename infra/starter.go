@@ -1,7 +1,22 @@
 package infra
 
+import "github.com/tietang/props/kvs"
+
+const (
+	KeyProps = "_conf"
+)
+
 //基础资源上下结构体
 type StarterContext map[string]interface{}
+
+// 这里加载配置文件
+func (s StarterContext) Props() kvs.ConfigSource {
+	p := s[KeyProps]
+	if p == nil {
+		panic("配置还没被初始化")
+	}
+	return p.(kvs.ConfigSource)
+}
 
 //基础资源启动器接口
 type Starter interface {
