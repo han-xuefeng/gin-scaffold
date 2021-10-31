@@ -2,17 +2,19 @@ package infra
 
 import "github.com/tietang/props/kvs"
 
-// 应用程序启动器管理器
+// BootApplication 应用程序启动器管理器
 type BootApplication struct {
 	conf kvs.ConfigSource
 	starterContext StarterContext
 }
 
 func New(conf kvs.ConfigSource) *BootApplication {
-	return &BootApplication{
+	b := &BootApplication{
 		conf:           conf,
 		starterContext: StarterContext{},
 	}
+	b.starterContext[KeyProps] = conf
+	return b
 }
 
 func (b *BootApplication) Start() {

@@ -1,12 +1,11 @@
 package base
 
 import (
-	"fmt"
-	"github.com/tietang/props/ini"
 	"github.com/tietang/props/kvs"
 	"han-xuefeng/gin-scaffold/infra"
 )
 
+// props 全局变量
 var props kvs.ConfigSource
 
 func Props() kvs.ConfigSource {
@@ -18,6 +17,5 @@ type PropsStarter struct {
 }
 
 func (p *PropsStarter)Init(ctx infra.StarterContext) {
-	props = ini.NewIniFileConfigSource("config.ini")
-	fmt.Println("初始化配置.")
+	props = ctx.Props()
 }

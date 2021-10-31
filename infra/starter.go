@@ -6,10 +6,10 @@ const (
 	KeyProps = "_conf"
 )
 
-//基础资源上下结构体
+// StarterContext 基础资源上下结构体
 type StarterContext map[string]interface{}
 
-// 这里加载配置文件
+// Props 这里加载配置文件
 func (s StarterContext) Props() kvs.ConfigSource {
 	p := s[KeyProps]
 	if p == nil {
@@ -18,17 +18,17 @@ func (s StarterContext) Props() kvs.ConfigSource {
 	return p.(kvs.ConfigSource)
 }
 
-//基础资源启动器接口
+// Starter 基础资源启动器接口
 type Starter interface {
-	//1.系统启动，初始化一些基础资源
+	// Init 1.系统启动，初始化一些基础资源
 	Init(StarterContext)
-	//2. 系统基础资源的安装
+	// Setup 2. 系统基础资源的安装
 	Setup(StarterContext)
-	//3. 启动基础资源
+	// Start 3. 启动基础资源
 	Start(StarterContext)
-	//启动器是否可阻塞
+	// StartBlocking 启动器是否可阻塞
 	StartBlocking() bool
-	//4. 资源停止和销毁
+	// Stop 4. 资源停止和销毁
 	Stop(StarterContext)
 }
 
