@@ -21,6 +21,9 @@ func (b *BootApplication) Start() {
 	//	初始化starter
 	//	安装所有的starter
 	// 	启动starter
+	b.init()
+	b.setup()
+	b.start()
 }
 
 func (b *BootApplication)init() {

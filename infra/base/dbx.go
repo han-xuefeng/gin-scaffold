@@ -1,13 +1,13 @@
 package base
 
 import (
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/tietang/dbx"
 	"github.com/tietang/props/kvs"
 	"han-xuefeng/gin-scaffold/infra"
-	_ "github.com/go-sql-driver/mysql"
 )
 
-// dbx 全局暴露的数据库实例
+// dbx 全局暴露的数据库实例 先用这个dbx  后续在改
 
 var database *dbx.Database
 
