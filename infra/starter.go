@@ -65,20 +65,3 @@ var StarterRegister *starterRegister = new(starterRegister)
 func Register(s Starter) {
 	StarterRegister.Register(s)
 }
-
-//系统基础资源的启动管理
-func SystemRun() {
-	//1. 初始化
-	ctx := StarterContext{}
-	for _, starter := range StarterRegister.AllStarters() {
-		starter.Init(ctx)
-	}
-	//2. 安装
-	for _, starter := range StarterRegister.AllStarters() {
-		starter.Setup(ctx)
-	}
-	//2. 启动
-	for _, starter := range StarterRegister.AllStarters() {
-		starter.Start(ctx)
-	}
-}

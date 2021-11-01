@@ -2,6 +2,7 @@ package base
 
 import (
 	_ "github.com/go-sql-driver/mysql"
+	log "github.com/sirupsen/logrus"
 	"github.com/tietang/dbx"
 	"github.com/tietang/props/kvs"
 	"han-xuefeng/gin-scaffold/infra"
@@ -31,6 +32,7 @@ func (s DbxDatabaseStarter)Setup(ctx infra.StarterContext){
 	if err != nil {
 		panic(err)
 	}
+	log.Info("数据库连接成功")
 	database = dbx
 }
 
