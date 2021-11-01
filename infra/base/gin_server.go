@@ -36,9 +36,9 @@ func (g *GinServerStarter) Setup(cxt infra.StarterContext) {
 	})
 }
 
-func (g *GinServerStarter) Start(cxt infra.StarterContext) {
+func (g *GinServerStarter) Start(ctx infra.StarterContext) {
 	//gin默认会把路由打印到控制台
-	port := Props().GetDefault("app.server.port", "18080")
+	port := ctx.Props().GetDefault("app.server.port", "18080")
 	Gin().Run(":"+port)
 }
 
