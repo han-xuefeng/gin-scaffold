@@ -16,7 +16,10 @@ type GinServerStarter struct {
 }
 
 func Gin() *gin.Engine {
-	return initGin()
+	if ginApplication == nil {
+		ginApplication = initGin()
+	}
+	return ginApplication
 }
 
 func (g *GinServerStarter) Init(cxt infra.StarterContext) {
@@ -34,8 +37,9 @@ func (g *GinServerStarter) Setup(cxt infra.StarterContext) {
 }
 
 func (g *GinServerStarter) Start(cxt infra.StarterContext) {
-	//把路由打印到控制台
-	ginApplication.Run()
+	//gin默认会把路由打印到控制台
+	port := Props().GetDefault("app.server.port", "18080")
+	Gin().Run(":"+port)
 }
 
 func (g *GinServerStarter) StartBlocking() bool {
